@@ -110,8 +110,6 @@ func (c *Cluster) storageBootstrap(ctx context.Context) error {
 		token = tokenFromFile
 	}
 	panic("in storageBootstrap")
-
-	return nil
 }
 
 func getBootstrapKeyFromStorage(ctx context.Context, storageClient client.Client, normalizedToken, oldToken string) (*client.Value, bool, error) {

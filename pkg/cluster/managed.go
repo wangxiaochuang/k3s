@@ -62,6 +62,7 @@ func (c *Cluster) initClusterDB(ctx context.Context, handler http.Handler) (http
 
 func (c *Cluster) assignManagedDriver(ctx context.Context) error {
 	for _, driver := range managed.Registered() {
+		// not ok and err is nil
 		if ok, err := driver.IsInitialized(ctx, c.config); err != nil {
 			return err
 		} else if ok {
@@ -70,7 +71,9 @@ func (c *Cluster) assignManagedDriver(ctx context.Context) error {
 		}
 	}
 
+	// 只注册了一个etcd的driver，也没有初始化
 	endpointType := strings.SplitN(c.config.Datastore.Endpoint, ":", 2)[0]
+	// endpointType没有设置，就是""
 	for _, driver := range managed.Registered() {
 		if endpointType == driver.EndpointName() {
 			c.managedDB = driver
@@ -86,7 +89,7 @@ func (c *Cluster) assignManagedDriver(ctx context.Context) error {
 			}
 		}
 	}
-
+	// 没有endpoint，也不是集群初始化，也没配token和JoinURL
 	return nil
 }
 

@@ -63,6 +63,7 @@ func (c *Cluster) startStorage(ctx context.Context) error {
 	}
 	c.storageStarted = true
 
+	// 启动了unix监听服务
 	etcdConfig, err := endpoint.Listen(ctx, c.config.Datastore)
 	if err != nil {
 		return errors.Wrap(err, "creating storage endpoint")

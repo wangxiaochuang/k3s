@@ -413,8 +413,8 @@ func run(app *cli.Context, cfg *cmds.Server, leaderControllers server.CustomCont
 		return err
 	}
 
-	fmt.Printf("Starting: %+v", cfg.DisableAgent)
-	return err
+	fmt.Println("need start agent")
+	return nil
 }
 
 // validateNetworkConfig ensures that the network configuration values make sense.

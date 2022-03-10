@@ -14,6 +14,7 @@ func (c *Cluster) Bootstrap(ctx context.Context, snapshot bool) error {
 		return err
 	}
 
+	// true false nil
 	shouldBootstrap, isInitialized, err := c.shouldBootstrapLoad(ctx)
 	if err != nil {
 		return err
